@@ -7,8 +7,13 @@ Udemy講座の勉強メモです。
 
 ## 23.Practice Test - Pods
 一からpodを作るチートシートのリンク先を探す。
+"k run"で作った場合、applyするファイルはどこにあるのか？
+
+```yamlの出力コマンド
+kubectl run mydeploy --image nginx -o yaml --dry-run
+```
+
 
 kubectl editでどうやってfixするか？
+->　上記でyamlできたらapplyすればいいからskipする。
 
-
-"k run"で作った場合、applyするファイルはどこにあるのか？
