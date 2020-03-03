@@ -7,5 +7,8 @@ Udemy講座の勉強メモです。
 
 ## 23.Practice Test - Pods
 一からpodを作るチートシートのリンク先を探す。
+
 kubectl editでどうやってfixするか？
+
+
 "k run"で作った場合、applyするファイルはどこにあるのか？
