@@ -10,7 +10,7 @@ Udemy講座の勉強メモです。
 "k run"で作った場合、applyするファイルはどこにあるのか？
 
 ```yamlの出力コマンド
-kubectl run mydeploy --image nginx -o yaml --dry-run
+kubectl run mydeploy --image nginx -o yaml  --generator=run-pod/v1 --dry-run
 ```
 
 
