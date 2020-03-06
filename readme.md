@@ -126,4 +126,68 @@ You could first create it and then scale it using the kubectl scale command.
 
 * kubectl run と　kubectl createの違いを押さえておく。
 * どっちがいずれなくなるんだっけ？ ->完全ガイドを読んで確認しておく。
-　
+
+
+## 43. Practice Test - Manual Scheduling
+
+* Podを指定のNodeにデプロイするには
+
+[spec]-[nodeName]に指定
+```
+master $ cat nginx.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  -  image: nginx
+     name: nginx
+  nodeName: node01
+```
+
+
+## 45. Practice Test - Labels and Selectors
+
+* Lableを指定してobjectを検索する。
+
+--selectorを利用
+```
+kubectl get pods --selector env=dev
+```
+* 複数labelを指定してobjectを検索する。
+,(カンマ)を使って指定
+```
+kubectl get all --selector env=prod,bu=finance,tier=frontend
+```
+
+## 48. Practice Test - Taints and Tolerations
+* nodeにtaintをつける
+```
+kubectl taint nodes node01 spray=mortein:NoSchedule
+```
+key=value:Effect
+
+
+* podにtolerationを設定する
+
+マニフェストファイルに以下を記述する。
+spec.tolerations
+```
+spec:
+  containers:
+  - image: nginx
+    name: bee
+    resources: {}
+  tolerations:
+   - key: spray
+     value: mortein
+     effect: NoSchedule
+ ```
+ 
+ * nodeからtaintを削除する。
+ 
+ ```
+ kubectl taint nodes master node-role.kubernetes.io/master:NoSchedule-
+ ```
+ 
