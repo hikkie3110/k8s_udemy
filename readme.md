@@ -193,14 +193,11 @@ spec:
  
 * TaintとTolerationの関係
 
-```
-例えばCLIからnodeにTaintsを設定する場合、
-`kubectl taint nodes node1 key=value:effect`
-のような形式で実行する。
-Taintsはkeyとvalueとeffectの3つで構成されている。
-(effectの説明は後でするとして)もし以下のように実行した場合、
-`kubectl taint nodes node1 app=batch:NoSchedule`
-Tolerationsに`app=batch`をもったpodではないとこのnodeにpodをscheduleできなくなる。
-```
-
+>例えばCLIからnodeにTaintsを設定する場合、
+>`kubectl taint nodes node1 key=value:effect`
+>のような形式で実行する。
+>Taintsはkeyとvalueとeffectの3つで構成されている。
+>(effectの説明は後でするとして)もし以下のように実行した場合、
+>`kubectl taint nodes node1 app=batch:NoSchedule`
+>Tolerationsに`app=batch`をもったpodではないとこのnodeにpodをscheduleできなくなる。
 [※引用](https://qiita.com/sheepland/items/8fedae15e157c102757f)
