@@ -79,7 +79,9 @@ The ReplicaSet "replicaset-2" is invalid: spec.template.metadata.labels: Invalid
 
 ```Create an NGINX Pod
 kubectl run --generator=run-pod/v1 nginx --image=nginx
+
 ```
+
 
 
 ```Generate POD Manifest YAML file (-o yaml). Don't create it(--dry-run)
@@ -101,3 +103,26 @@ kubectl create deployment --image=nginx nginx --dry-run -o yaml > nginx-deployme
 ```
 
 ## 30. PracticeTest Deployment
+
+
+特になし
+
+## 32. Practice Test - Namespaces
+
+* 全てのnamespaceのpodを探す。
+
+```
+k get po --all-namespaces
+```
+
+## 35.Practice Test - Services
+
+## Tips
+
+kubectl create deployment does not have a --replicas option. 
+You could first create it and then scale it using the kubectl scale command.
+
+## 37. Practice Test - Imperative Commands
+
+* kubectl run と　kubectl createの違いを押さえておく。
+* どっちがいずれなくなるんだっけ？
