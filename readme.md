@@ -125,4 +125,5 @@ You could first create it and then scale it using the kubectl scale command.
 ## 37. Practice Test - Imperative Commands
 
 * kubectl run と　kubectl createの違いを押さえておく。
-* どっちがいずれなくなるんだっけ？
+* どっちがいずれなくなるんだっけ？ ->完全ガイドを読んで確認しておく。
+　
