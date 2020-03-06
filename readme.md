@@ -187,6 +187,8 @@ spec:
  
  * nodeからtaintを削除する。
  
+ effectの末尾に`-`をつける。
+ 
  ```
  kubectl taint nodes master node-role.kubernetes.io/master:NoSchedule-
  ```
