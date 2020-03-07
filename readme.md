@@ -203,3 +203,23 @@ spec:
 >`kubectl taint nodes node1 app=batch:NoSchedule`
 >Tolerationsに`app=batch`をもったpodではないとこのnodeにpodをscheduleできなくなる。
 [※引用](https://qiita.com/sheepland/items/8fedae15e157c102757f)
+
+
+## 51. Practice Test - Node Affinity
+* nodeにlabelをつける
+```
+kubectl label node node01 color=blue
+```
+
+* node affinityの書き方
+kubernetes.ioから探せばOK
+
+* key/operator/valueの意味を理解しておく必要がある。
+operatorはkeyに対するvalueの等式
+** In	ラベルの値が指定したValueのいずれかに一致する
+** NotIn	ラベルの値が指定したValueのいずれにも一しない時
+** Exists	ラベルが存在する時
+** DoesNotExist	ラベルが存在しない時
+** Gt	ラベルの値が指定した値よりも大きい時
+** Lt	ラベルの値が指定した値よりも小さい時
+
