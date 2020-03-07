@@ -216,8 +216,10 @@ kubernetes.ioから探せばOK
 
 * key/operator/valueの意味を理解しておく必要がある。
 operatorはkeyに対するvalueの等式
-|  値  |  意味  |
-| ---- | ---- |
+
+
+|  値           |  意味  |
+| ----          | ---- |
 |  In  |  ラベルの値が指定したValueのいずれかに一致する  |
 |  NotIn  |  ラベルの値が指定したValueのいずれにも一しない時  |
 |  Exists  |  ラベルが存在する時  |
