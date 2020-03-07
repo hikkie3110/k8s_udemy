@@ -228,3 +228,35 @@ operatorはkeyに対するvalueの等式
 |  Lt  |  ラベルの値が指定した値よりも小さい時  |
 
 	
+## 56. Practice Test - Resource Requirements and Limits
+* 既存のpodをyamlファイルに出力する。
+
+```
+kubectl get pods -o yaml nginx-test-58586b9f9c-4qqk7
+```
+
+## 59. Practice Test - DaemonSets
+
+特になし(kubernetes.ioからyamlファイルをコピーして作れた。）
+
+## 61. Practice Test - Static Pods
+
+* static pod pathの特定方法
+
+```
+$ ps -aux | grep kubelet
+root      2053  5.5  4.6 944284 95720 ?        Ssl  18:58   0:09 /usr/bin/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.conf --config=/var/lib/kubelet/config.yaml --cgroup-driver=cgroupfs --cni-bin-dir=/opt/cni/bin --cni-conf-dir=/etc/cni/net.d --network-plugin=cni
+```
+実行結果のconfigに指定されているconfig.yamlにstatpodpathの記述が入っている。
+そこにyamlファイルをおけばOK
+
+## 63. Practice Test - Multiple Schedulers
+
+* namespaceの指定
+--namespace=kube-system dem　　　　ででも良いが
+-n kube-systemの方が楽。
+
+* podにscheduler設定を入れるには
+　spec.schedulerNameに　schedulerを指定する。
+ 
+
