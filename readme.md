@@ -259,4 +259,24 @@ root      2053  5.5  4.6 944284 95720 ?        Ssl  18:58   0:09 /usr/bin/kubele
 * podにscheduler設定を入れるには
 　spec.schedulerNameに　schedulerを指定する。
  
+ 
+ ## 70. Practice Test - Monitoring
+ 
+* ディレクトリ内にあるマニフェストファイルを一度にapplyする。
+```
+k apply -f ./
+```
+
+ ## 73. Practice Test - Monitor Application Logs
+
+* pod内にコンテナが複数ある場合のlogコマンド
+```
+k logs [pod名] -c [container名]
+```
+## 79. Practice Test - Rolling Updates and Rollbacks
+
+特になし
+
+
+ 
 
