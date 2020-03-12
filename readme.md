@@ -277,6 +277,199 @@ k logs [pod名] -c [container名]
 
 特になし
 
+## 84. Practice Test - Commands and Arguments
 
- 
+
+* commandとargsだけ変えても`k apply -f`でupdateはできない。
+
+```
+aster $ k apply -f ubuntu-sleeper-3.yaml
+The Pod "ubuntu-sleeper-3" is invalid: spec: Forbidden: pod updates may not change fields other than `spec.containers[*].image`, `spec.initContainers[*].image`, `spec.activeDeadlineSeconds` or `spec.tolerations` (only additions to existing tolerations)
+```
+
+
+* podとdockerfileでの起動時挙動の記述について
+```
+The 'command' (entrypoint) is overridden in the pod definition. So the answer is --color green
+```
+
+## 87. Practice Test: Environment Variables
+
+特になし
+
+## 90. Practice Test - Secrets
+
+* No.7の設問がよくわからなかった。解説も回答もないので再度チャレンジ。どうやってsecretを適用するか。
+
+## 93. Practice Test - Multi Container PODs
+
+* No.8-9がわからない。
+そもそも'app'のpodがないから何をしたらいいのか不明。
+
+
+## 96. Practice Test - Init Containers
+
+特になし
+
+
+## 102. Practice Test - OS Upgrades
+
+* メンテ前：daemonsetを無視して、nodeからpodを追い出す。
+```
+kubectl drain node01 --ignore-daemonsets
+```
+
+* メンテ後：ノードの復帰
+
+|  コマンド  |  意味  |
+| ----          | ---- |
+|  `k cordon`  |  ノードをclusterから除外する（今動いているpodは追い出さない）  |
+|  `k uncordon`  |  ノードをclusterに復帰させる  |
+
+
+## 106. Practice Test - Cluster Upgrade
+
+* clusterのversionを調べる
+
+`kubectl version`
+
+
+```
+master $ k version
+Client Version: version.Info{Major:"1", Minor:"16", GitVersion:"v1.16.0", GitCommit:"2bd9643cee5b3b3a5ecbd3af49d09018f0773c77", GitTreeState:"clean", BuildDate:"2019-09-18T14:36:53Z", GoVersion:"go1.12.9", Compiler:"gc", Platform:"linux/amd64"}
+Server Version: version.Info{Major:"1", Minor:"16", GitVersion:"v1.16.0", GitCommit:"2bd9643cee5b3b3a5ecbd3af49d09018f0773c77", GitTreeState:"clean", BuildDate:"2019-09-18T14:27:17Z", GoVersion:"go1.12.9", Compiler:"gc", Platform:"linux/amd64"}
+
+```
+
+* stableな最新バージョンの調べ方
+
+`kubeadm upgrade plan`
+
+* upgradeの手順
+
+** kubeletのupgrade
+
+```apt install kubeadm=1.17.0-00```
+
+```apt install kubelet=1.17.0-00```
+
+
+
+** kubeadmのupgradeコマンド実行
+
+```kubeadm upgrade node config --kubelet-version $(kubelet --version | cut -d ' ' -f 2)```
+
+
+## 109. Practice Test - Backup and Restore Methods
+
+* backup/restoreコマンド
+
+あとでかく。
+
+
+## 124. Practice Test - View Certificates
+
+* `kube-apiserver`の認証情報の確認をする。
+
+マニフェストファイルをみる。
+```
+cat /etc/kubernetes/manifests/kube-apiserver.yaml
+```
+
+```
+cat /etc/kubernetes/manifests/etcd.yaml
+```
+
+* CNの調べ方
+
+```openssl x509 -in file-path.crt -text -noout```を実行する。
+
+ex1.
+```
+openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text
+```
+
+
+* No.12以降がよくわからない。
+
+
+* Sign a new certificate for the apiserver-etcd-client
+```
+openssl x509 -req -in /etc/kubernetes/pki/apiserver-etcd-client.csr -CA /etc/kubernetes/pki/etcd/ca.crt -CAkey /etc/kubernetes/pki/etcd/ca.key -CAcreateserial -out /etc/kubernetes/pki/apiserver-etcd-client.crt
+```
+
+
+## 126. Practice Test - Certificates API
+
+* CSRの作り方
+
+[qiita](https://qiita.com/knqyf263/items/aefb0ff139cfb6519e27)
+
+1. csrをbase64化する。
+ ```
+ cat akshay.csr | base64 | tr -d '\n'
+ ```
+2. yamlファイル作成
+1. approveする。(rejectする場合はdenyコマンド)
+```
+kubectl certificate approve akshay
+``` 
+
+## 128. Practice Test - KubeConfig
+
+* clusteryやユーザについてkubeconfigを調べる。
+
+```
+kubectl config view
+```
+
+config fileを見ることも可能
+
+```
+kubectl config view --kubeconfig my-kube-config
+```
+
+* contextを切り替える
+
+```
+kubectl config --kubeconfig=/root/my-kube-config use-context research
+```
+
+* kubeconfigを切り替える。
+
+configファイルの入れかえ。
+
+`$HOME/.kube/config`
+
+## 132. Practice Test - RBAC
+
+* authorization modeの確認
+
+kube-apiserverの `--authorization-mode=` を確認する。
+
+```
+kubectl describe pod kube-apiserver-master -n kube-system
+```
+
+* roleがasignされているアカウントを確認する。
+
+```
+kubectl describe rolebinding weave-net -n kube-system
+```
+
+* あるユーザの権限でコマンドを実行する。
+
+`--as [User]`で実行
+
+```
+k get po --as dev-user
+```
+
+* role/rolebindingの作成
+
+
+## 134. Practice Test - Cluster Roles and Role Bindings
+
+
+
 
